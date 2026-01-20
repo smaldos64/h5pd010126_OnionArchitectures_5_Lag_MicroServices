@@ -11,6 +11,6 @@ namespace Audit.Domain.Services.Interfaces
     public interface IAuditRepository
     {
         void Add(AuditLog log);
-        AuditLog GetByAccountId(int accountId);
+        IEnumerable<AuditLog> GetByAccountId(int accountId);
     }
 }

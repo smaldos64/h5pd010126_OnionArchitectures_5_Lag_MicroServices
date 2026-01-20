@@ -12,8 +12,8 @@ namespace Account.Application.Interfaces
         AccountResponseDTO GetAccount(int id);
         IEnumerable<AccountResponseDTO> GetAllAccounts();
         void CreateAccount(CreateAccountRequest request);
-        void Deposit(TransactionRequest request);
-        void Withdraw(TransactionRequest request);
+        Task Deposit(TransactionRequest request);
+        Task Withdraw(TransactionRequest request);
         void DeleteAccount(int id);
     }
 }

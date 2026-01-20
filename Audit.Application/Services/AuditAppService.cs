@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Audit.Domain.Model.Entities;
+using Audit.Domain.Services.Interfaces;
+using Mapster;
 
 namespace Audit.Application.Services
 {
     public class AuditAppService : IAuditAppService
     {
-        private readonly IAuditAppService _repo;
-        public AuditAppService(IAuditAppService repo) => _repo = repo;
+        private readonly IAuditRepository _repo;
+        public AuditAppService(IAuditRepository repo) => _repo = repo;
         public void RegisterActivity(CreateAuditLogRequestDTO request)
         {
             // Implementation for registering an audit activity
@@ -21,14 +23,14 @@ namespace Audit.Application.Services
                                                Amount = request.Amount,
                                                Timestamp = DateTime.Now };
             
-            //_repo.Add(auditActivity);
+            _repo.Add(auditActivity);
         }
 
         public IEnumerable<AuditLogDTO> GetLogsByAccount(int accountId)
         {
-            //var logs = _repo.GetByAccountId(accountId);
-            //return logs.Adapt<IEnumerable<AuditLogDTO>>();
-            return null;
+            var logs = _repo.GetByAccountId(accountId);
+            return logs.Adapt<IEnumerable<AuditLogDTO>>();
+            //return null;
         }
     }
 }

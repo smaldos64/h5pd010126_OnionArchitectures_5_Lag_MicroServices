@@ -39,26 +39,34 @@ namespace Account.Application.Services
             _repo.Add(acc);
         }
 
-        public void Deposit(TransactionRequest req)
+        public async Task Deposit(TransactionRequest req)
         {
             var acc = _repo.GetById(req.AccountId);
             acc.Deposit(req.Amount);
             _repo.Update(acc);
-            var transactionRequest = new CreateAuditLogRequest()
-            {
-                AccountId = req.AccountId,
-                Action = "Deposit",
-                Amount = req.Amount,
-                Timestamp = DateTime.Now
-            };
-            _auditService.SendToAuditAsync(transactionRequest);
+            var transactionRequest = new CreateAuditLogRequest
+            (
+                AccountId: req.AccountId,
+                Action: "Indsat",
+                Amount: req.Amount,
+                Timestamp: DateTime.Now
+            );
+            await _auditService.SendToAuditAsync(transactionRequest);
         }
 
-        public void Withdraw(TransactionRequest req)
+        public async Task Withdraw(TransactionRequest req)
         {
             var acc = _repo.GetById(req.AccountId);
             acc.Withdraw(req.Amount);
             _repo.Update(acc);
+            var transactionRequest = new CreateAuditLogRequest
+            (
+                AccountId: req.AccountId,
+                Action: "Hævet",
+                Amount: req.Amount,
+                Timestamp: DateTime.Now
+            );
+            await _auditService.SendToAuditAsync(transactionRequest);
         }
 
         public void DeleteAccount(int id) => _repo.Delete(id);

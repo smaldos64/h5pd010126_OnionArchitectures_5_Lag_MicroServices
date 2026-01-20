@@ -9,7 +9,7 @@ using Account.Infrastructure.Persistence;
 using Account.Infrastructure.Repositories;
 using Account.Infrastructure.ExternalServices;
 
-namespace MyBank.WebApi
+namespace Account.WebApi
 {
     public class Program
     {
@@ -31,7 +31,7 @@ namespace MyBank.WebApi
             builder.Services.AddScoped<TransferDomainService>();
 
             builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>
-                (client => { client.BaseAddress = new Uri("https://localhost:7001/"); });
+                (client => { client.BaseAddress = new Uri("https://localhost:7019/"); });
 
             builder.Services.AddSwaggerGen(c => {
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
