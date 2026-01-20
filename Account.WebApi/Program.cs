@@ -30,8 +30,8 @@ namespace MyBank.WebApi
             builder.Services.AddScoped<IAccountAppService, AccountAppService>();
             builder.Services.AddScoped<TransferDomainService>();
 
-            //builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>; builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>
-            //    (client => { client.BaseAddress = new Uri("https://localhost:7001/"); });
+            builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>
+                (client => { client.BaseAddress = new Uri("https://localhost:7001/"); });
 
             builder.Services.AddSwaggerGen(c => {
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());

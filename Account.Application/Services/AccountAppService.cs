@@ -9,13 +9,24 @@ using Account.Application.DTO;
 using Account.Application.Interfaces;
 using Account.Domain.Model.Entities;
 using Account.Domain.Services.Interfaces;
+using System.Runtime.CompilerServices;
+using Account.Application.DTO.ExternalRequests;
 
 namespace Account.Application.Services
 {
     public class AccountAppService : IAccountAppService
     {
         private readonly IAccountRepository _repo;
-        public AccountAppService(IAccountRepository repo) => _repo = repo;
+        private readonly IAuditIntegrationService _auditService;
+
+        //public AccountAppService(IAccountRepository repo) => _repo = repo;
+
+        public AccountAppService(IAccountRepository repo,
+                                 IAuditIntegrationService auditService)
+        {
+            _repo = repo;
+            _auditService = auditService;
+        }
 
         public AccountResponseDTO GetAccount(int id) => _repo.GetById(id).Adapt<AccountResponseDTO>();
 
@@ -33,6 +44,14 @@ namespace Account.Application.Services
             var acc = _repo.GetById(req.AccountId);
             acc.Deposit(req.Amount);
             _repo.Update(acc);
+            var transactionRequest = new CreateAuditLogRequest()
+            {
+                AccountId = req.AccountId,
+                Action = "Deposit",
+                Amount = req.Amount,
+                Timestamp = DateTime.Now
+            };
+            _auditService.SendToAuditAsync(transactionRequest);
         }
 
         public void Withdraw(TransactionRequest req)

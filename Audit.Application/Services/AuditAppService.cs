@@ -21,13 +21,14 @@ namespace Audit.Application.Services
                                                Amount = request.Amount,
                                                Timestamp = DateTime.Now };
             
-            _repo.Add(auditActivity);
+            //_repo.Add(auditActivity);
         }
 
         public IEnumerable<AuditLogDTO> GetLogsByAccount(int accountId)
         {
-            var logs = _repo.GetByAccountId(accountId);
-            return logs.Adapt<IEnumerable<AuditLogDTO>>();
+            //var logs = _repo.GetByAccountId(accountId);
+            //return logs.Adapt<IEnumerable<AuditLogDTO>>();
+            return null;
         }
     }
 }
