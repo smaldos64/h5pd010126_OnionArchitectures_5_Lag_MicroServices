@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.Application", "Audit.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.Infrastructure", "Audit.Infra.Persistence.MySQL\Audit.Infrastructure.csproj", "{E5794D88-BC64-40B2-AA05-F29A98FC8FFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.WebApi", "Audit.WebApi\Audit.WebApi.csproj", "{994C33D7-0873-4460-BF1F-BBAAC1AEF041}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.InternalWebApi", "Audit.WebApi\Audit.InternalWebApi.csproj", "{994C33D7-0873-4460-BF1F-BBAAC1AEF041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

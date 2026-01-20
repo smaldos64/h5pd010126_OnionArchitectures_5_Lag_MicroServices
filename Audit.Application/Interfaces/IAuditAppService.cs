@@ -9,6 +9,7 @@ namespace Audit.Application.Interfaces
 {
     public interface IAuditAppService
     {
-        void RegisterActivity(CreateAuditEntryDTO request);
+        void RegisterActivity(CreateAuditLogRequestDTO request);
+        IEnumerable<AuditLogDTO> GetLogsByAccount(int accountId);
     }
 }

@@ -1,11 +1,13 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Account.Application.Interfaces;
 using Account.Application.Services;
 using Account.Domain.Services.Interfaces;
 using Account.Domain.Services.Services;
 using Account.Infrastructure.Persistence;
 using Account.Infrastructure.Repositories;
+using Account.Infrastructure.ExternalServices;
 
 namespace MyBank.WebApi
 {
@@ -27,6 +29,9 @@ namespace MyBank.WebApi
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IAccountAppService, AccountAppService>();
             builder.Services.AddScoped<TransferDomainService>();
+
+            //builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>; builder.Services.AddHttpClient<IAuditIntegrationService, AuditIntegrationService>
+            //    (client => { client.BaseAddress = new Uri("https://localhost:7001/"); });
 
             builder.Services.AddSwaggerGen(c => {
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());

@@ -13,7 +13,7 @@ namespace Audit.Application.Services
     {
         private readonly IAuditAppService _repo;
         public AuditAppService(IAuditAppService repo) => _repo = repo;
-        public void RegisterActivity(CreateAuditEntryDTO request)
+        public void RegisterActivity(CreateAuditLogRequestDTO request)
         {
             // Implementation for registering an audit activity
             var auditActivity = new AuditLog { AccountId = request.AccountId,
@@ -22,6 +22,12 @@ namespace Audit.Application.Services
                                                Timestamp = DateTime.Now };
             
             _repo.Add(auditActivity);
+        }
+
+        public IEnumerable<AuditLogDTO> GetLogsByAccount(int accountId)
+        {
+            var logs = _repo.GetByAccountId(accountId);
+            return logs.Adapt<IEnumerable<AuditLogDTO>>();
         }
     }
 }
