@@ -26,7 +26,7 @@ namespace Audit.WebApi
             // MySQL
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
             builder.Services.AddDbContext<TransactionDbContext>(dbContextOptions => dbContextOptions
-                            .UseMySql(connectionString, serverVersion, x => x.MigrationsAssembly("MyBank.Infrastructure.Persistence.MySQL"))
+                            .UseMySql(connectionString, serverVersion, x => x.MigrationsAssembly("Audit.Infrastructure"))
                             // The following three options help with debugging, but should
                             // be changed or removed for production.
                             .LogTo(Console.WriteLine, LogLevel.Information)

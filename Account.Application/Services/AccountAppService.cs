@@ -19,8 +19,6 @@ namespace Account.Application.Services
         private readonly IAccountRepository _repo;
         private readonly IAuditIntegrationService _auditService;
 
-        //public AccountAppService(IAccountRepository repo) => _repo = repo;
-
         public AccountAppService(IAccountRepository repo,
                                  IAuditIntegrationService auditService)
         {
