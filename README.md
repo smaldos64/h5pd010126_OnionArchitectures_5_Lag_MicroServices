@@ -1,6 +1,6 @@
 For at få lavet de 2 nødvendige Databaser, skal man gøre som følger, når man står i Package Manger Console vinduet.:
 
-1) For at få lavet (MsSQL) Databasen for Account WEb Api'et.
+1) For at få lavet (MsSQL) Databasen for Account Web Api'et.
 
 Add-Migration "NavnHer" -Project Account.Infrastructure -StartupProject Account.WebApi
 
