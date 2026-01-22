@@ -4,7 +4,7 @@ For at få lavet de 2 nødvendige Databaser, skal man gøre som følger, når ma
 
 Add-Migration "NavnHer" -Project Account.Infrastructure -StartupProject Account.WebApi
 
-Og når man efterfølgende skal lave Databasen kan man bruge denne kommando i Package Manager Console vinduet:
+Og når man efterfølgende skal lave Databasen kan man bruge denne kommando:
 
 Update-Database -Project Account.Infrastructure -StartupProject Account.WebApi
 
@@ -12,6 +12,6 @@ Update-Database -Project Account.Infrastructure -StartupProject Account.WebApi
 
 Add-Migration "NavnHer" -Project Audit.Infrastructure -StartupProject Audit.WebApi
 
-Og når man efterfølgende skal lave Databasen kan man bruge denne kommando i Package Manager Console vinduet:
+Og når man efterfølgende skal lave Databasen kan man bruge denne kommando:
 
 Update-Database -Project Audit.Infrastructure -StartupProject Audit.WebApi
